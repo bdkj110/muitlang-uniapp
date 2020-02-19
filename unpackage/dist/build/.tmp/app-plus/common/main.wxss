@@ -1,0 +1,126 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	/*每个页面公共css */
+button::after{ border: none;}
+@font-face {
+      font-family: 'myicon';  /* project id 1539034 */
+      src: url('https://at.alicdn.com/t/font_1539034_tmok16fr5s.eot');
+      src: url('https://at.alicdn.com/t/font_1539034_tmok16fr5s.eot?#iefix') format('embedded-opentype'),
+      url('https://at.alicdn.com/t/font_1539034_tmok16fr5s.woff2') format('woff2'),
+      url('https://at.alicdn.com/t/font_1539034_tmok16fr5s.woff') format('woff'),
+      url('https://at.alicdn.com/t/font_1539034_tmok16fr5s.ttf') format('truetype'),
+      url('https://at.alicdn.com/t/font_1539034_tmok16fr5s.svg#myicon') format('svg');
+}
+.myicon {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+    font-family: "myicon" !important;
+    font-size: 20px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    z-index: 1;
+    -webkit-filter: blur(0px);
+            filter: blur(0px);
+}
+.icon-baidu:before {
+    content: "\E607";
+}
+.icon-translate:before {
+    content: "\E608";
+    color: #61B6FF;
+}
+.icon-quxiao:before {
+    content: "\E600";
+    color: #FFA49E;
+}
+.icon-quxiao1:before {
+    content: "\E61E";
+    color: #FFA49E;
+    font-size: 30px;
+}
+.icon-Google:before {
+    content: "\E60B";
+}
+.icon-copy:before {
+    content: "\E601";
+    color: #6D7B94;
+}
+.icon-photo:before {
+    content: "\E60D";
+}
+.icon-right:before {
+    content: "\E60E";
+    color: #A8C7D0;
+}
+.icon-Wikipedia:before {
+    content: "\E60F";
+}
+  /* 修改复选框默认样式 */
+
+  /* 微信中样式 */
+
+checkbox .wx-checkbox-input {
+		border: 0 !important;
+    width: 40rpx;
+    height: 40rpx;
+		background: #F3F6F9;
+		box-shadow: 1px 1px 1px rgba(136, 165, 191, 0.6), -1px -1px 1px #FFFFFF !important;
+		-webkit-filter: blur(1px) !important;
+		        filter: blur(1px) !important;
+		border-radius: 12px !important;
+}
+checkbox .wx-checkbox-input.wx-checkbox-input-checked {
+		background: #B9CAD9 !important;
+		box-shadow: -4px -2px 8px rgba(136, 165, 191, 0.16), 4px 4px 8px rgba(255, 255, 255, 0.8), inset 5px 5px 8px rgba(151, 174, 199, 0.5), inset -5px -5px 8px rgba(255, 255, 255, 0.5) !important;
+		-webkit-filter: blur(1px) !important;
+		        filter: blur(1px) !important;
+		border-radius: 12px !important;
+}
+.wx-checkbox-input.wx-checkbox-input-checked {
+		border: none !important;
+}
+.wx-checkbox-input.wx-checkbox-input-checked::before {
+    opacity:0 !important;
+}
+radio .wx-radio-input {
+		border: 0 !important;
+		width: 40rpx;
+		height: 40rpx;
+		background: #F3F6F9;
+		box-shadow: 1px 1px 1px rgba(136, 165, 191, 0.6), -1px -1px 1px #FFFFFF !important;
+		-webkit-filter: blur(1px) !important;
+		        filter: blur(1px) !important;
+		border-radius: 12px !important;
+}
+radio .wx-radio-input.wx-radio-input-checked {
+		background: #B9CAD9 !important;
+		box-shadow: -4px -2px 8px rgba(136, 165, 191, 0.16), 4px 4px 8px rgba(255, 255, 255, 0.8), inset 5px 5px 8px rgba(151, 174, 199, 0.5), inset -5px -5px 8px rgba(255, 255, 255, 0.5) !important;
+		-webkit-filter: blur(1px) !important;
+		        filter: blur(1px) !important;
+		border-radius: 12px !important;
+}
+.wx-radio-input.wx-radio-input-checked {
+  	border: none !important;
+}
+.wx-radio-input.wx-radio-input-checked::before {
+    opacity:0 !important;
+}
+
+

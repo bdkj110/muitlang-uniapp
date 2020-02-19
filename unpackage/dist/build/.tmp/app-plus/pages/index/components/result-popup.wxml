@@ -1,0 +1,1 @@
+<view data-event-opts="{{[['tap',[['convers',['$event']]]]]}}" class="resultPopup data-v-a676b330" bindtap="__e"><view class="title data-v-a676b330">{{''+currentlanguage+" -> "+sourceLanguage+''}}</view><view class="content data-v-a676b330">{{''+transBackResult+''}}</view><view class="close data-v-a676b330"><view class="myicon icon-quxiao1 data-v-a676b330"></view></view></view>

@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "翻天下",
+  "usingComponents": {
+    "input-area": "/pages/index/components/input-area",
+    "result-list": "/pages/index/components/result-list",
+    "uni-popup": "/components/uni-popup/uni-popup",
+    "result-popup": "/pages/index/components/result-popup"
+  }
+}

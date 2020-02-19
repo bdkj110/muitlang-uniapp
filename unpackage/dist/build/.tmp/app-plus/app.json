@@ -1,0 +1,20 @@
+{
+  "pages": [
+    "pages/index/index"
+  ],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "翻天下",
+    "navigationBarBackgroundColor": "#F4F7FA",
+    "backgroundColor": "#F4F7FA"
+  },
+  "nvueCompiler": "uni-app",
+  "renderer": "auto",
+  "splashscreen": {
+    "alwaysShowBeforeRender": true,
+    "autoclose": false
+  },
+  "appname": "翻天下",
+  "compilerVersion": "2.5.1",
+  "usingComponents": {}
+}
