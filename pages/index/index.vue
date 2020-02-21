@@ -6,7 +6,7 @@
     <resultList :languageRes="form.resultTo" :transResult="form.result" @transBack="transBack"></resultList>
     <!-- 弹出层 -->
     <uni-popup ref="popup" type="center" @showTextarea="showTextarea">
-      <resultPopup :currentlanguage="currentlanguage" :sourceLanguage="form.resultFrom" :transBackResult="transBackResult"></resultPopup>
+     <resultPopup :currentlanguage="currentlanguage" :sourceLanguage="form.resultFrom" :transBackResult="transBackResult" :currentTransResult="currentTransResult"></resultPopup>
     </uni-popup>
   </view>
 </template>
@@ -33,6 +33,7 @@
           language: null, // 目标语言代码
           languageName: '目标语言', // 目标语言名称
           content: '' ,// 待翻译内容
+          currentTransResult: '', //当前选中的翻译结果
           result: [],
           resultTo: [],
           resultFrom: ''
@@ -49,6 +50,8 @@
       },
       transBack (index) {
         this.currentlanguage = this.form.resultTo[index]
+        this.currentTransResult = this.form.result[index]
+        console.log('currentTransResult:' + this.currentTransResult)
         console.log(this.currentlanguage)
         let appid = this.appid
         let key = this.key
@@ -58,7 +61,7 @@
         let to = this.form.resultFrom;
         let str1 = appid + query + salt + key;
         let sign = this.$options.methods.mdbaidu(str1);
-        wx.request({
+        uni.request({
           url: 'https://fanyi-api.baidu.com/api/trans/vip/translate',
           data: {
             q: query,
@@ -74,7 +77,7 @@
         })
         this.$refs.popup.open()
         this.ifTextareaShow = true
-        console.log(this.ifTextareaShow)
+        console.log('打开弹窗')
       },
       translate() {
         this.form.result = []
@@ -90,7 +93,7 @@
         let sign = this.$options.methods.mdbaidu(str1);
         // var that = this
         for (let lg of this.form.language) {
-          wx.request({
+          uni.request({
             url: 'https://fanyi-api.baidu.com/api/trans/vip/translate',
             data: {
               q: query,

@@ -1,41 +1,61 @@
 <template>
-  <view class="resultPopup" @click="convers">
+  <view class="resultPopup">
     <view class="title">
       {{currentlanguage }} -> {{ sourceLanguage}}
     </view>
     <view class="content">
       {{transBackResult}}
     </view>
-    <view class="close">
-      <view class="myicon icon-quxiao1"></view>
+    <!-- <view class="close">
+      <view class="myicon icon-quxiao"></view>
+    </view> -->
+    <view class="button1">
+      <button class="buttons" >
+        <view class="myicon icon-baidu" @click="magi(0)"></view>
+      </button>
+      <button class="buttons">
+        <view class="myicon icon-Google" @click="google(1)"></view>
+      </button>
+      <button class="buttons">
+        <view class="myicon icon-photo" @click="googlePhoto(2)"></view>
+      </button>
+      <button class="buttons">
+        <view class="myicon icon-Wikipedia" @click="wiki(3)"></view>
+      </button>
     </view>
-    <!-- <view class="button1">
-        <button class="buttons" @click="jumpOut('https://magi.com/search?q='+ form.PopupContent)">
-           <view class="myicon icon-baidu"></view>
-        </button>
-        <button class="buttons">
-           <view class="myicon icon-Google"></view>
-        </button>
-        <button class="buttons">
-           <view class="myicon icon-photo"></view>
-        </button>
-        <button class="buttons">
-           <view class="myicon icon-Wikipedia"></view>
-        </button>
-      </view> -->
   </view>
 </template>
 
 <script>
   export default {
     name: 'resultPopup',
-    props: ['currentlanguage', 'sourceLanguage', 'transBackResult'],
+    props: ['currentlanguage', 'sourceLanguage', 'transBackResult', 'currentTransResult'],
     data() {
       return {
         currentResult: true,
       }
     },
     methods: {
+      magi(types) {
+        plus.runtime.openURL('https://magi.com/search?q='+ this.transBackResult, function(res) {  
+          console.log(res);  
+        });  
+      },
+      google(types) {
+        plus.runtime.openURL('https://www.google.com/search?q='+ this.transBackResult, function(res) {  
+          console.log(res);  
+        });  
+      },
+      googlePhoto(types) {
+        plus.runtime.openURL('https://www.google.com/search?tbm=isch&q='+ this.transBackResult, function(res) {  
+          console.log(res);  
+        });  
+      },
+      wiki(types) {
+        plus.runtime.openURL('https://en.wikipedia.org/wiki/'+ this.transBackResult, function(res) {  
+          console.log(res);  
+        });  
+      }
       // jumpOut (e) {
       // window.location.href = e
       // } 
@@ -69,29 +89,35 @@
     margin: 16px;
     top: 48px;
   }
-  
-  .close {
-    position: absolute;
-    bottom: 30px;
-    right: 50%;
-  }
 
-  /* 
+ /* .close {
+    position: absolute;
+    top: 32px;
+    right: 30px;
+  } */
+
+
   .button1 {
     position: absolute;
     bottom: 0px;
     display: flex;
-    justify-content:space-between;
+    justify-content: space-between;
     width: 100%;
+    z-index: 99;
   }
-  
+
   .buttons {
+    color: #58667C;
     margin: 16px;
     width: 36px;
     height: 36px;
     background: #F3F8FD;
-    box-shadow: -4px -2px 8px rgba(136, 165, 191, 0.08), 4px 4px 8px rgba(255, 255, 255, 0.4), inset -4px -6px 8px rgba(217, 230, 242, 0.5), inset 4px 6px 8px rgba(255, 255, 255, 0.4);
+    box-shadow: 4px 2px 8px rgba(136, 165, 191, 0.3), -5px -3px 8px #FFFFFF, inset -2px -2px 24px rgba(255, 255, 255, 0.5), inset 2px 2px 24px rgba(214, 225, 237, 0.5);
     border-radius: 14px;
-  } 
-  */
+  }
+
+  .buttonsHover {
+    background: #E3EEF9;
+    box-shadow: -4px -2px 8px rgba(136, 165, 191, 0.16), 4px 4px 8px rgba(255, 255, 255, 0.8), inset 5px 5px 8px rgba(151, 174, 199, 0.5), inset -5px -5px 8px rgba(255, 255, 255, 0.5);
+  }
 </style>

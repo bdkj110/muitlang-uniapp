@@ -25,7 +25,7 @@
         var sign = this.$options.methods.mdbaidu(str1);
         // var that = this
         for (let lg of this.language) {
-          wx.request({
+          uni.request({
             url: 'https://fanyi-api.baidu.com/api/trans/vip/translate',
             data: {
               q: query,

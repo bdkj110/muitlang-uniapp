@@ -24,7 +24,11 @@
         this.$emit('transBack', index)
       },
       paste(index) {
-        wx.vibrateShort()
+        uni.vibrateShort({
+            success: function () {
+                console.log('success')
+            }
+        })
         uni.setClipboardData({
           data: this.transResult[index],
           success: function () {

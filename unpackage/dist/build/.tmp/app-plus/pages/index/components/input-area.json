@@ -1,6 +1,4 @@
 {
   "component": true,
-  "usingComponents": {
-    "lang-popup": "/pages/index/components/lang-popup"
-  }
+  "usingComponents": {}
 }

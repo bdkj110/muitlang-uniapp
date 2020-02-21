@@ -24,7 +24,7 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.uni-popup.data-v-3e3b8290 {
+.uni-popup.data-v-3bd1f078 {
   position: fixed;
   top: 0;
   bottom: 0;
@@ -32,35 +32,49 @@
   right: 0;
   z-index: 99;
 }
-.uni-popup__mask.data-v-3e3b8290 {
+.uni-popup__mask.data-v-3bd1f078 {
   position: absolute;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: red;
+  background-color: black;
   opacity: 0;
-  z-index: 98;
 }
-.uni-popup__wrapper.data-v-3e3b8290 {
+.mask-ani.data-v-3bd1f078 {
+  -webkit-transition-property: opacity;
+  transition-property: opacity;
+  -webkit-transition-duration: 0.2s;
+          transition-duration: 0.2s;
+}
+.uni-top-mask.data-v-3bd1f078 {
+  opacity: 1;
+}
+.uni-bottom-mask.data-v-3bd1f078 {
+  opacity: 1;
+}
+.uni-center-mask.data-v-3bd1f078 {
+  opacity: 1;
+}
+.uni-popup__wrapper.data-v-3bd1f078 {
   display: block;
   position: absolute;
 }
-.top.data-v-3e3b8290 {
+.top.data-v-3bd1f078 {
   top: 0;
   left: 0;
   right: 0;
   -webkit-transform: translateY(-500px);
           transform: translateY(-500px);
 }
-.bottom.data-v-3e3b8290 {
+.bottom.data-v-3bd1f078 {
   bottom: 0;
   left: 0;
   right: 0;
   -webkit-transform: translateY(500px);
           transform: translateY(500px);
 }
-.center.data-v-3e3b8290 {
+.center.data-v-3bd1f078 {
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
@@ -82,11 +96,11 @@
           transform: scale(1.2);
   opacity: 0;
 }
-.uni-popup__wrapper-box.data-v-3e3b8290 {
+.uni-popup__wrapper-box.data-v-3bd1f078 {
   display: block;
   position: relative;
 }
-.content-ani.data-v-3e3b8290 {
+.content-ani.data-v-3bd1f078 {
   -webkit-transition-property: opacity, -webkit-transform;
   transition-property: opacity, -webkit-transform;
   transition-property: transform, opacity;
@@ -94,15 +108,15 @@
   -webkit-transition-duration: 0.2s;
           transition-duration: 0.2s;
 }
-.uni-top-content.data-v-3e3b8290 {
+.uni-top-content.data-v-3bd1f078 {
   -webkit-transform: translateY(0);
           transform: translateY(0);
 }
-.uni-bottom-content.data-v-3e3b8290 {
+.uni-bottom-content.data-v-3bd1f078 {
   -webkit-transform: translateY(0);
           transform: translateY(0);
 }
-.uni-center-content.data-v-3e3b8290 {
+.uni-center-content.data-v-3bd1f078 {
   -webkit-transform: scale(1);
           transform: scale(1);
   opacity: 1;

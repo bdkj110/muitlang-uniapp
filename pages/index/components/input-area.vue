@@ -1,11 +1,11 @@
 <template>
   <view>
-    <view :animation="animationData" class="bottomArea" :style="{height: inputH, bottom: bottomAreaH}">
+    <view class="bottomArea" :style="{height: inputH, bottom: bottomAreaH}">
       <!-- 文本框 -->
       <view class="inputArea" :style="{bottom: inputToBottom}">
-        <textarea @input="lesionInput" @focus="changeHeight" v-model="form.content" style="color: #58746C; margin:16px; position: absolute; width: 85%; height: 70%;"
-          :adjust-position="false" :show-confirm-bar="false" :disabled="ifTextareaShow" maxlength="-1" 
-          @keydown.enter="preventBreak" @keyup.enter="trans" />
+        <textarea @input="lesionInput" @focus="changeHeight" v-model="form.content" style="color: #58746C; margin:16px; position: absolute; width: 85%; height: 90%;"
+          :adjust-position="false" :show-confirm-bar="false" :disabled="ifTextareaShow" maxlength="-1" @keydown.enter="preventBreak"
+          @keyup.enter="trans" />
         </view>
       
       <view class="displayClipboard" :style="{visibility: displayClipboard}">
@@ -36,36 +36,58 @@
           </view>
         </view>
       </view>
-      
+    </view>
+    
+    <view class="">
       <!-- 语言选择 -->
-      <LangPopup
-        :chackboxOrRadio="chackboxOrRadio"
-        ref="LangPopup"
-        @sourceChange="sourceChange"
-        @objectChange="objectChange"
-        >
-      </LangPopup>
+      <scroll-view scroll-y="true" class="sourceListBox" :style="{visibility: sourcePopupIfShow}">
+        <view class="uni-list">
+          <radio-group @change="sourceChange">
+            <label class="uni-list-cell uni-list-cell-pd" v-for="(item) in langIn" :key="item.value">
+              <view>
+                <radio :value="item.value"/>
+              </view>
+              <view>{{item.name}}</view>
+            </label>
+          </radio-group>
+        </view>
+      </scroll-view>
+      
+      <scroll-view scroll-y="true" class="objListBox" :style="{visibility: objPopupIfShow}">
+        <view class="uni-list">
+          <checkbox-group @change="objectChange">
+            <label class="uni-list-cell uni-list-cell-pd" v-for="item in langOut" :key="item.value">
+              <view>
+                <checkbox :value="item.value" :checked="item.checked" />
+              </view>
+              <view>{{item.name}}</view>
+            </label>
+          </checkbox-group>
+        </view>
+      </scroll-view>
     </view>
   </view>
 </template>
 
 <script>
-  import LangPopup from './lang-popup'
+  import {
+    langIn,
+    langOut
+  } from './langlist'
   
   export default{
     name:'InputArea',
-    components:{
-      LangPopup
-    },
     props: ['ifTextareaShow'],
     data () {
       return {
-        animationData: {},
+        langIn, // 源语言库
+        langOut, // 目标语言库
+        sourcePopupIfShow: 'hidden', // 源语言选择列表是否可见
+        objPopupIfShow: 'hidden', // 目标语言选择列表是否可见
         inputH: '100%', // 文本框高度
         inputToBottom: '80px', // 输入区至底部距离
         bottomAreaH: '0px', //底部组件至底部距离
         displayClipboard: 'visible', // 复制到剪贴板是否可见
-        ifShowChackbox: false, // 语言选择列表是否可见
         chackboxOrRadio: null, //当前语言选择列表是源语言或目标语言
         form: {
           sourceLanguage: 'auto', // 源语言代码
@@ -76,20 +98,14 @@
       }
     },
     methods: {
-      onReady () {
-        this.animation = uni.createAnimation()
-      },
       // 改变文本框高度和位置
       changeHeight (e) {
-        this.ifShowChackbox = false
-        this.$refs.LangPopup.parentMsg(this.ifShowChackbox);
         (this.form.content === '') ? this.displayClipboard = 'visible' : this.displayClipboard = 'hidden'
-        // this.bottomAreaH = '0px'
-        //this.inputH = '100%'
+        this.inputH = '100%'
+        this.bottomAreaH = '0px'
         this.inputToBottom = e.detail.height+24 + 'px'
-        this.animation.bottom(0).height('100%').step({duration:0, timingFunction: 'ease',})
-        this.animationData = this.animation.export()
-        
+        this.sourcePopupIfShow = 'hidden'
+        this.objPopupIfShow = 'hidden'
       },
       lesionInput () {
         this.displayClipboard = 'hidden'
@@ -108,15 +124,17 @@
       },
       // 翻译
       trans () {
-        // this.bottomAreaH = '0px'
-        // this.inputH = '200px'
+        this.sourcePopupIfShow = 'hidden'
+        this.objPopupIfShow = 'hidden'
+        this.bottomAreaH = '0px'
+        this.inputH = '200px'
         this.inputToBottom = '80px'
-        wx.vibrateShort()
+        uni.vibrateShort({
+          success: function () {
+              console.log('成功震动')
+          }
+        })
         this.$emit('transRequst', this.form.sourceLanguage, this.form.language, this.form.content)
-        this.ifShowChackbox = false
-        this.$refs.LangPopup.parentMsg(this.ifShowChackbox);
-        this.animation.height(200).bottom(0).step({duration:200, timingFunction: 'ease',})
-        this.animationData = this.animation.export()
       },
       
       //清除按钮
@@ -126,41 +144,52 @@
       
       // 源语言选择按钮
       source () {
-        this.ifShowChackbox = true
-        this.chackboxOrRadio = true
-        this.$refs.LangPopup.parentMsg(this.ifShowChackbox, this.chackboxOrRadio);
-        //this.bottomAreaH = 'calc(100% - 200px)'
-        //this.inputH = '200px'
-        this.objectDisplay = '100%'
+        this.objPopupIfShow = 'hidden'
+        this.sourcePopupIfShow = 'visible'
+        this.bottomAreaH = 'calc(100% - 200px)'
+        this.inputH = '200px'
         //this.sourceDisplay = '200px'
         this.inputToBottom = '80px'
-        this.animation.height(200).bottom('calc(100% - 200px)').step({duration:200, timingFunction: 'ease',})
-        this.animationData = this.animation.export()
       },
       // 目标语言选择按钮
       object () {
-        this.ifShowChackbox = true
-        this.chackboxOrRadio = false
-        this.$refs.LangPopup.parentMsg(this.ifShowChackbox);
+        this.sourcePopupIfShow = 'hidden'
+        this.objPopupIfShow = 'visible'
         this.bottomAreaH = 'calc(100% - 200px)'
         this.inputH = '200px'
         this.inputToBottom = '80px'
-        this.animation.height(200).bottom('calc(100% - 200px)').step({duration:200, timingFunction: 'ease',})
-        this.animationData = this.animation.export()
       },
       
       // 子组件传回的值：当前选择的源语言
-      sourceChange (current) {
-        this.form.sourceLanguage = current
+      sourceChange (evt) {
+        this.form.sourceLanguage = evt.detail.value;
       },
       // 子组件传回的值：当前选择的目标语言
-      objectChange (language) {
-        this.form.language = language
-        this.form.languageName= language.join('/')
+      objectChange (e) {
+        this.form.language = e.detail.value
+        this.form.languageName= this.form.language.join('/')
         if (this.form.languageName === '') {
           this.form.languageName = '目标语言'
         }
-      }
+      },
+      
+      // radioChange (evt) {
+      //   this.current = evt.detail.value;
+      //   this.$emit('sourceChange', this.current)
+      // },
+      // checkboxChange (e) {
+      //   this.language = e.detail.value
+      //   this.$emit('objectChange', this.language)
+      // },
+      // parentMsg(chackboxOrRadio) {
+      //   if (chackboxOrRadio) {
+      //     this.sourceIfShow = 'visible' 
+      //     this.objectIfShow = 'hidden'
+      //   } else {
+      //     this.objectIfShow = 'visible'
+      //     this.sourceIfShow = 'hidden'
+      //   }
+      // } 
     }
   }
 </script>
@@ -285,4 +314,32 @@
     bottom: 24px;
   }
   
+  .sourceListBox {
+    top: 200;
+    background-color: #F4F7FA;
+    position: fixed;
+    bottom: 0;
+    height: calc(100% - 200px);
+    width: 100%;
+    color: #6D7B94;
+    z-index: 5;
+  }
+  
+  .objListBox {
+    top: 200;
+    background-color: #F4F7FA;
+    position: fixed;
+    bottom: 0;
+    height: calc(100% - 200px);
+    width: 100%;
+    color: #6D7B94;
+    z-index: 5;
+  }
+  
+  .uni-list-cell {
+    display: flex;
+    justify-content: space-between;
+    height: 48px;
+    margin: 4px 24px 4px 24px;
+  }
 </style>

@@ -59,11 +59,6 @@
     color: #FFA49E;
   }
   
-  .icon-quxiao1:before {
-    content: "\e61e";
-    color: #FFA49E;
-    font-size: 30px;
-  }
   
   .icon-Google:before {
     content: "\e60b";
@@ -90,26 +85,8 @@
  
 /* 修改复选框默认样式 */
 	/* #ifdef H5 */
-	uni-checkbox .uni-checkbox-input {
-		border: 0 !important;
-		background: #F3F6F9 ;
-		box-shadow: 1px 0.5px 3px rgba(136, 165, 191, 0.6), -1px -0.5px 2px #FFFFFF !important;
-		border-radius: 12px !important;
-	}
 
-	uni-checkbox .uni-checkbox-input.uni-checkbox-input-checked {
-		color: #fff;
-		background: $specColor
-	}
-
-	.uni-checkbox-input.uni-checkbox-input-checked {
-		border: none !important;
-	}
-
-	/* #endif */
-	/* 微信中样式 */
-	/* #ifdef APP-PLUS ||MP-WEIXIN */
-	checkbox .wx-checkbox-input {
+	uni-checkbox  .uni-checkbox-input {
 		border: 0 !important;
     width: 40rpx;
     height: 40rpx;
@@ -119,22 +96,19 @@
 		border-radius: 12px !important;
 	}
 
-	checkbox .wx-checkbox-input.wx-checkbox-input-checked {
+	uni-checkbox  .uni-checkbox-input.uni-checkbox-input-checked {
+    border: none !important;
 		background: #B9CAD9 !important;
 		box-shadow: -4px -2px 8px rgba(136, 165, 191, 0.16), 4px 4px 8px rgba(255, 255, 255, 0.8), inset 5px 5px 8px rgba(151, 174, 199, 0.5), inset -5px -5px 8px rgba(255, 255, 255, 0.5) !important;
 		filter: blur(1px) !important;
 		border-radius: 12px !important;
 	}
 
-	.wx-checkbox-input.wx-checkbox-input-checked {
-		border: none !important;
-	}
-
-  .wx-checkbox-input.wx-checkbox-input-checked::before {
-    opacity:0 !important;
+  uni-checkbox .uni-checkbox-input.uni-checkbox-input-checked::before {
+    opacity: 0;
   }
 
-	radio .wx-radio-input {
+	uni-radio .uni-radio-input {
 		border: 0 !important;
 		width: 40rpx;
 		height: 40rpx;
@@ -144,19 +118,17 @@
 		border-radius: 12px !important;
 	}
 
-	radio .wx-radio-input.wx-radio-input-checked {
+	uni-radio .uni-radio-input.uni-radio-input-checked {
+    border: none !important;
 		background: #B9CAD9 !important;
 		box-shadow: -4px -2px 8px rgba(136, 165, 191, 0.16), 4px 4px 8px rgba(255, 255, 255, 0.8), inset 5px 5px 8px rgba(151, 174, 199, 0.5), inset -5px -5px 8px rgba(255, 255, 255, 0.5) !important;
 		filter: blur(1px) !important;
 		border-radius: 12px !important;
 	}
   
-  .wx-radio-input.wx-radio-input-checked {
-  	border: none !important;
+  uni-radio .uni-radio-input.uni-radio-input-checked::before {
+    opacity: 0;
   }
   
-  .wx-radio-input.wx-radio-input-checked::before {
-    opacity:0 !important;
-  }
 	/* #endif */
 </style>
